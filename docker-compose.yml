@@ -1,0 +1,18 @@
+# v2 syntax
+version: "2"
+
+# Named volumes
+volumes:
+  # MySQL Data
+  postgres-data:
+    driver: local
+
+services:
+  # PHP (with Caddy)
+  app:
+    image: ambientum/php:7.3-nginx
+    container_name: package-composer
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "9191:8080"

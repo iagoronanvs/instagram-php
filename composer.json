@@ -1,0 +1,15 @@
+{
+    "name": "iagoronanvs/instagram-php",
+    "authors": [
+        {
+            "name": "Iago Ronan",
+            "email": "iago.vsantos@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Iagoronanvs\\": "src"
+        }
+    }
+}
