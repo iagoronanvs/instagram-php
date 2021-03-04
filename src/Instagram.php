@@ -23,12 +23,14 @@ class Instagram {
         $posts =  $this->profile->entry_data->ProfilePage[0]->graphql->user->edge_owner_to_timeline_media->edges;
 
         foreach($posts as $post) {
+
             $parsePost = (object) [
                 "image" => $post->node->display_url,
                 "description" => $post->node->edge_media_to_caption->edges[0]->node->text,
                 "date" => $post->node->taken_at_timestamp,
                 "likes" => $post->node->edge_liked_by->count,
                 "comments" => $post->node->edge_media_to_comment->count,
+                "url" => 'https://www.instagram.com/p/'.$post->node->shortcode.'/',
             ];
 
             array_push($arr, $parsePost);
