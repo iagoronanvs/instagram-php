@@ -18,6 +18,22 @@ class Instagram {
     }
 
     public function feed() {
-        return $this->profile->entry_data->ProfilePage[0]->graphql->user->edge_owner_to_timeline_media->edges;
+        $arr = [];
+
+        $posts =  $this->profile->entry_data->ProfilePage[0]->graphql->user->edge_owner_to_timeline_media->edges;
+
+        foreach($posts as $post) {
+            $parsePost = (object) [
+                "image" => $post->node->display_url,
+                "description" => $post->node->edge_media_to_caption->edges[0]->node->text,
+                "date" => $post->node->taken_at_timestamp,
+                "likes" => $post->node->edge_liked_by->count,
+                "comments" => $post->node->edge_media_to_comment->count,
+            ];
+
+            array_push($arr, $parsePost);
+        }
+
+        return $arr;
     }
 }
