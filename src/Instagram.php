@@ -3,7 +3,9 @@
 namespace Iagoronanvs;
 
 class Instagram {
-    public static function handler($account) {
+    private $profile;
+
+    function __construct($account) {
         $response = file_get_contents("https://www.instagram.com/$account/");
 
         $data = explode("window._sharedData = ", $response)[1];
@@ -12,8 +14,10 @@ class Instagram {
 
         $data = str_replace(";", "", $data);
 
-        $data = json_decode($data);
+        $this->profile = json_decode($data);
+    }
 
-        return $data;
+    public function feed() {
+        return $this->profile->entry_data->ProfilePage[0]->graphql->user->edge_owner_to_timeline_media->edges;
     }
 }

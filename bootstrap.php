@@ -2,4 +2,6 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-Iagoronanvs\Instagram::handler("iagoronanvs");
+$profile = new Iagoronanvs\Instagram("apple");
+
+print_r($profile->feed());
