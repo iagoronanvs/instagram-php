@@ -15,8 +15,6 @@ class Instagram {
         $response = curl_exec($ch);
 
         curl_close($ch);
-
-        $response = json_decode($response);
         
         $this->profile = json_decode($response);
     }
