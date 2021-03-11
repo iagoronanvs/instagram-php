@@ -22,7 +22,7 @@ class Instagram {
     public function feed() {
         $arr = [];
 
-        $posts = $response->data->user->edge_owner_to_timeline_media->edges;
+        $posts = $this->profile->data->user->edge_owner_to_timeline_media->edges;
 
         foreach($posts as $post) {
 
